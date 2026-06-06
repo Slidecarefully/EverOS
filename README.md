@@ -30,7 +30,7 @@
 - [Project Structure](#project-structure)
 - [Documentation](#documentation)
 - [Use Cases](#use-cases)
-- [Stay Tuned](#stay-tuned)
+- [Watch EverOS](#watch-everos)
 - [EverMind Ecosystems](#evermind-ecosystems)
 - [Contributing](#contributing)
 
@@ -55,16 +55,19 @@
 <tr>
 <td width="33%" valign="top">
 <strong>Markdown As Source Of Truth</strong><br>
+<br>
 All memory is persisted as <code>.md</code> files: readable, editable,
 grep-able, Git-versioned, and openable directly in Obsidian.
 </td>
 <td width="33%" valign="top">
 <strong>Local Three-Part Stack</strong><br>
+<br>
 Markdown + SQLite + LanceDB keep vectors, BM25, and scalar filters
 local. No MongoDB, Elasticsearch, or Redis required.
 </td>
 <td width="33%" valign="top">
 <strong>Dual-Track Memory</strong><br>
+<br>
 Agent memory (<code>cases</code> / <code>skills</code>) and user memory
 (<code>episodes</code> / <code>profile</code>) are extracted independently.
 </td>
@@ -72,16 +75,19 @@ Agent memory (<code>cases</code> / <code>skills</code>) and user memory
 <tr>
 <td width="33%" valign="top">
 <strong>Multimodal Ingestion</strong><br>
+<br>
 Text, images, audio, documents, PDFs, HTML, and email are unified into
 searchable memory.
 </td>
 <td width="33%" valign="top">
 <strong>Self-Evolution</strong><br>
+<br>
 Common skills are extracted from real usage; repeated patterns become
 reusable workflows, no retraining required.
 </td>
 <td width="33%" valign="top">
 <strong>Orthogonal Retrieval</strong><br>
+<br>
 Search independently by <code>user_id</code>, <code>agent_id</code>,
 <code>app_id</code>, <code>project_id</code>, and <code>session_id</code>.
 </td>
@@ -656,11 +662,15 @@ Explore stored entities and relationships in a graph interface. Frontend demo; b
 
 </div>
 
-## Stay Tuned
+## Watch EverOS
 
-Star the repo or join the community links above to follow new architecture methods, benchmark releases, memory-enabled use cases, Wiki-style memory, and Dreaming updates.
+EverOS 1.0.0 is the first release of a larger memory-system roadmap.
+Watch this repository for upcoming work on Wiki-style memory, Dreaming,
+deeper offline evolution, benchmark releases, and more real-world agent
+integrations.
 
-![star us gif](https://github.com/user-attachments/assets/0c512570-945a-483a-9f47-8e067bd34484)
+If EverOS is useful to your agent stack, starring the repo helps more
+builders discover it.
 
 ### Star History
 

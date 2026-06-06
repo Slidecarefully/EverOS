@@ -30,7 +30,7 @@
 - [项目结构](#项目结构)
 - [文档](#文档)
 - [使用场景](#使用场景)
-- [持续关注](#持续关注)
+- [关注 EverOS](#关注-everos)
 - [EverMind 生态](#evermind-生态)
 - [参与贡献](#参与贡献)
 
@@ -55,28 +55,34 @@
 <tr>
 <td width="33%" valign="top">
 <strong>Markdown As Source Of Truth</strong><br>
+<br>
 所有记忆持久化为 <code>.md</code> 文件：可读、可改、可 grep、可 Git 版本化，也可直接用 Obsidian 打开。
 </td>
 <td width="33%" valign="top">
 <strong>Local Three-Part Stack</strong><br>
+<br>
 Markdown + SQLite + LanceDB 在本地完成向量、BM25 和标量过滤检索，无需 MongoDB、Elasticsearch 或 Redis。
 </td>
 <td width="33%" valign="top">
 <strong>Dual-Track Memory</strong><br>
+<br>
 Agent 记忆（<code>cases</code> / <code>skills</code>）与用户记忆（<code>episodes</code> / <code>profile</code>）独立提取，互不污染。
 </td>
 </tr>
 <tr>
 <td width="33%" valign="top">
 <strong>Multimodal Ingestion</strong><br>
+<br>
 文本、图像、音频、文档、PDF、HTML 和邮件统一抽取为可检索的记忆形态。
 </td>
 <td width="33%" valign="top">
 <strong>Self-Evolution</strong><br>
+<br>
 从真实使用经验中自动抽取共性 skills，重复模式沉淀为可复用流程，无需重训。
 </td>
 <td width="33%" valign="top">
 <strong>Orthogonal Retrieval</strong><br>
+<br>
 按 <code>user_id</code>、<code>agent_id</code>、<code>app_id</code>、<code>project_id</code> 和 <code>session_id</code> 五维独立检索。
 </td>
 </tr>
@@ -642,12 +648,14 @@ Claude Code 的持久记忆插件。自动保存并回忆过去 coding sessions 
 
 </div>
 
-## 持续关注
+## 关注 EverOS
 
-Star 这个仓库，或加入上面的社区链接，以持续关注新的架构方法、benchmark releases、
-memory-enabled use cases、Wiki 式记忆和 Dreaming 更新。
+EverOS 1.0.0 是更大规模记忆系统路线图的第一个发布版本。Watch 这个仓库，
+即可持续关注 Wiki 式记忆、Dreaming、更深入的离线进化、benchmark releases，
+以及更多真实 Agent 集成。
 
-![star us gif](https://github.com/user-attachments/assets/0c512570-945a-483a-9f47-8e067bd34484)
+如果 EverOS 对你的 Agent stack 有帮助，Star 这个仓库也会帮助更多 builders
+发现它。
 
 ### Star 趋势
 
