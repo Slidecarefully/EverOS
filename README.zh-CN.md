@@ -1,6 +1,6 @@
 <div align="center" id="readme-top">
 
-![EverOS banner](https://github.com/EverMind-AI/EverOS/releases/download/v1.0.0/everos-readme-banner-optimized.jpg)
+![EverOS banner](https://github.com/user-attachments/assets/8e217d39-5d15-4c6c-9b54-3e83add4e0f2)
 
 <p align="center">
   <a href="https://x.com/evermind"><img src="https://img.shields.io/badge/EverMind-000000?labelColor=gray&style=for-the-badge&logo=x&logoColor=white" alt="X"></a>
@@ -21,8 +21,9 @@
 
 <br>
 
-- [EverOS 1.0.0 亮点](#everos-100-亮点)
-- [为什么选择 EverOS](#为什么选择-everos)
+- [EverOS 1.0.0](#everos-100)
+- [EverOS: One Memory For All](#everos-one-memory-for-all)
+- [EverOS 的差异](#everos-的差异)
 - [快速开始](#快速开始)
 - [架构概览](#架构概览)
 - [存储布局](#存储布局)
@@ -39,7 +40,7 @@
 </details>
 
 
-## EverOS 1.0.0 亮点
+## EverOS 1.0.0
 
 > [!IMPORTANT]
 >
@@ -48,8 +49,24 @@
 > 多模态摄取、用户记忆与 Agent 记忆作用域，以及由
 > [EverAlgo](https://github.com/EverMind-AI/EverAlgo) 支撑的模块化算法。
 >
-> **欢迎 Watch 这个仓库。** 下一阶段我们会继续推进记忆系统方法，
-> 包括 Wiki 式知识层和用于更深层离线进化的 Dreaming。
+> **即将推出：** Knowledge Wiki 会把记忆整理成可编辑、可溯源的
+> Markdown 知识页。Reflection（也称 Dreaming）会在系统空闲或离线时
+> 连接信号、压缩历史，并持续改进 profile 和 skills。
+
+<br>
+<div align="right">
+
+[![](https://img.shields.io/badge/-Back_to_top-gray?style=flat-square)](#readme-top)
+
+</div>
+
+
+## EverOS: One Memory For All
+
+EverOS 是面向 agents 和 makers 的本地记忆操作系统。它提供一层可携带的
+统一记忆层，让记忆穿过 coding assistants、apps、devices 和 workflows。
+目前它会把对话、文件和 Agent 轨迹保存为可读 Markdown，并同步本地 SQLite
+和 LanceDB 索引，用于快速检索和自进化复用。
 
 <table>
 <tr>
@@ -96,22 +113,50 @@ Agent 记忆（<code>cases</code> / <code>skills</code>）与用户记忆（<cod
 </div>
 
 
-## 为什么选择 EverOS
+## EverOS 的差异
 
-EverOS 是一个开源 Python 框架，用来构建**跨 Agent、跨平台的自进化长期记忆**。
-它为 maker 提供一层可携带的统一记忆层，适用于他们使用的每一个 Agent：
-Claude Code、Codex、OpenClaw、Hermes 等等。这样，上下文、决策、文件和
-Agent 轨迹可以跟着工作流走，而不是被锁在某一个工具里。
-
-EverOS 会把对话、Agent 轨迹和文件保存为可读 Markdown，并同步本地 SQLite
-和 LanceDB 索引，以便快速检索。Agent 可以复用过去的 cases 和 skills，从重复
-工作流中自我改进，并逐渐变得更加主动。
-
-系统围绕三个边界设计：
-
-1. **记忆内容保持可读** - Markdown 是长期、耐用的 source of truth。
-2. **运行时状态保持本地** - SQLite 跟踪状态；LanceDB 处理向量、BM25 和结构化过滤搜索。
-3. **算法保持模块化** - [EverAlgo](https://github.com/EverMind-AI/EverAlgo) 负责记忆算法；EverOS 负责运行时、持久化、在线流程和离线进化。
+<table>
+<tr>
+<th width="28%">Title</th>
+<th width="36%">EverOS</th>
+<th width="36%">Other Agent Memory Libraries</th>
+</tr>
+<tr>
+<td><strong>Markdown source of truth</strong></td>
+<td>✅ 标准 <code>.md</code> 文件：可读、可编辑、可 diff、可 Git 版本化</td>
+<td>❌ 通常是 API、vector、graph、dashboard 或 database state</td>
+</tr>
+<tr>
+<td><strong>直接文件编辑</strong></td>
+<td>✅ 编辑 <code>.md</code>；cascade watcher 同步</td>
+<td>❌ 通常需要 SDK、API、dashboard 或 backend update path</td>
+</tr>
+<tr>
+<td><strong>本地三件套</strong></td>
+<td>✅ Markdown + SQLite + LanceDB；不需要 MongoDB、Elasticsearch 或 Redis</td>
+<td>❌ 常依赖 managed service、vector DB、graph DB 或 server stack</td>
+</tr>
+<tr>
+<td><strong>用户 + Agent 双轨</strong></td>
+<td>✅ 用户 <code>episodes/profile</code> 与 Agent <code>cases/skills</code> 是分离的一等记忆表面</td>
+<td>❌ 通常围绕 chat history、profiles、entities、facts 或 retrieval records</td>
+</tr>
+<tr>
+<td><strong>正交检索作用域</strong></td>
+<td>✅ 按 <code>user_id</code>、<code>agent_id</code>、<code>app_id</code>、<code>project_id</code> 和 <code>session_id</code> 检索</td>
+<td>❌ 通常按 app、namespace、tenant、thread 或 graph 来组织</td>
+</tr>
+<tr>
+<td><strong>Knowledge Wiki</strong></td>
+<td>✅ 即将推出：由记忆形成可编辑、可溯源的 Markdown 知识页</td>
+<td>❌ 通常是 retrieval、graph、dashboard 或 generated summaries，而不是可编辑、可溯源的知识页</td>
+</tr>
+<tr>
+<td><strong>Dreaming / Reflection</strong></td>
+<td>✅ 即将推出：在系统空闲或离线时运行，用来连接信号、压缩历史，并在 session 之间改进 profiles 和 skills</td>
+<td>❌ 通常是在线读写 API、retrieval records 或 summaries，而不是空闲态记忆整理</td>
+</tr>
+</table>
 
 <br>
 <div align="right">
@@ -651,8 +696,30 @@ Claude Code 的持久记忆插件。自动保存并回忆过去 coding sessions 
 ## 关注 EverOS
 
 EverOS 1.0.0 是更大规模记忆系统路线图的第一个发布版本。Watch 这个仓库，
-即可持续关注 Wiki 式记忆、Dreaming、更深入的离线进化、benchmark releases，
-以及更多真实 Agent 集成。
+即可持续关注更深入的空闲态和离线进化、benchmark releases，以及更多真实 Agent 集成。
+
+<table>
+<tr>
+<td width="50%" valign="top">
+<strong>Knowledge Wiki</strong><br>
+<br>
+把分散的 episodes、files、facts 和 Agent traces 整理成有来源的 Markdown
+知识页，覆盖 people、projects、topics、decisions 和 workflows。记忆不再只是
+向量召回结果，而是用户可以阅读、修正、链接、版本化，并用现有 Markdown 工具打开的知识层。
+</td>
+<td width="50%" valign="top">
+<strong>Dreaming / Reflection</strong><br>
+<br>
+在系统空闲或离线时运行，重新审视已存储记忆，连接弱信号，把嘈杂历史压缩成稳定模式，
+并持续改进 profile 和 skills。目标是让 Agent 在活跃 session 之间也能变得更好，
+而不是只在你 prompt 它时才进步。
+</td>
+</tr>
+</table>
+
+许多记忆系统停留在聊天历史、黑盒 profile 或向量召回。EverOS 的差异在于：
+记忆保持本地、Markdown-native、可审计、可自进化；原始记忆仍然可读，
+衍生知识沉淀为 wiki，Reflection 则把重复经验转化为更有用的长期行为。
 
 如果 EverOS 对你的 Agent stack 有帮助，Star 这个仓库也会帮助更多 builders
 发现它。

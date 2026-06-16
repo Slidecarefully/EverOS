@@ -21,8 +21,9 @@
 
 <br>
 
-- [EverOS 1.0.0 Highlights](#everos-100-highlights)
-- [Why EverOS](#why-everos)
+- [EverOS 1.0.0](#everos-100)
+- [EverOS: One Memory For All](#everos-one-memory-for-all)
+- [How EverOS Is Different](#how-everos-is-different)
 - [Quick Start](#quick-start)
 - [Architecture At A Glance](#architecture-at-a-glance)
 - [Storage Layout](#storage-layout)
@@ -39,7 +40,7 @@
 </details>
 
 
-## EverOS 1.0.0 Highlights
+## EverOS 1.0.0
 
 > [!IMPORTANT]
 >
@@ -48,8 +49,26 @@
 > multimodal ingestion, user and agent memory scopes, and modular algorithms
 > through [EverAlgo](https://github.com/EverMind-AI/EverAlgo).
 >
-> **Watch this repository** for the next wave of memory-system work, including
-> Wiki-style knowledge layers and Dreaming for deeper offline evolution.
+> **Coming next:** Knowledge Wiki will turn memory into editable,
+> source-backed Markdown knowledge pages. Reflection, also called Dreaming,
+> will run when the system is idle or offline to connect signals, compress
+> history, and improve profiles and skills between sessions.
+
+<br>
+<div align="right">
+
+[![](https://img.shields.io/badge/-Back_to_top-gray?style=flat-square)](#readme-top)
+
+</div>
+
+
+## EverOS: One Memory For All
+
+EverOS is the local memory operating system for agents and makers. It gives
+one portable memory layer across coding assistants, apps, devices, and
+workflows. Today it stores conversations, files, and agent trajectories as
+readable Markdown, then syncs local SQLite and LanceDB indexes for fast
+retrieval and self-evolving reuse.
 
 <table>
 <tr>
@@ -102,24 +121,50 @@ Search independently by <code>user_id</code>, <code>agent_id</code>,
 </div>
 
 
-## Why EverOS
+## How EverOS Is Different
 
-EverOS is an open-source Python framework for self-evolving long-term
-memory across agents and platforms. It gives makers one portable memory
-layer for every agent they use - Claude Code, Codex, OpenClaw, Hermes,
-and more - so context, decisions, files, and trajectories can follow the
-work instead of staying trapped in one tool.
-
-EverOS stores conversations, agent trajectories, and files as readable
-Markdown, then syncs local SQLite and LanceDB indexes for fast retrieval.
-Agents can reuse past cases and skills, improve from repeated workflows,
-and become more proactive over time.
-
-The system is built around three boundaries:
-
-1. **Memory content stays readable** - Markdown is the durable source of truth.
-2. **Runtime state stays local** - SQLite tracks state and LanceDB handles vector, BM25, and scalar-filter search.
-3. **Algorithms stay modular** - [EverAlgo](https://github.com/EverMind-AI/EverAlgo) owns memory algorithms; EverOS owns runtime, persistence, online flows, and offline evolution.
+<table>
+<tr>
+<th width="28%">Title</th>
+<th width="36%">EverOS</th>
+<th width="36%">Other Agent Memory Libraries</th>
+</tr>
+<tr>
+<td><strong>Markdown source of truth</strong></td>
+<td>✅ Canonical <code>.md</code> files that are readable, editable, diffable, and Git-versioned</td>
+<td>❌ Usually API, vector, graph, dashboard, or database state</td>
+</tr>
+<tr>
+<td><strong>Direct file editing</strong></td>
+<td>✅ Edit <code>.md</code> files; cascade watcher syncs</td>
+<td>❌ Usually SDK, API, dashboard, or backend update paths</td>
+</tr>
+<tr>
+<td><strong>Local three-part stack</strong></td>
+<td>✅ Markdown + SQLite + LanceDB; no MongoDB, Elasticsearch, or Redis required</td>
+<td>❌ Often depends on managed services, vector DBs, graph DBs, or server stacks</td>
+</tr>
+<tr>
+<td><strong>User + agent tracks</strong></td>
+<td>✅ User <code>episodes/profile</code> and agent <code>cases/skills</code> are separate first-class surfaces</td>
+<td>❌ Usually centered on chat history, profiles, entities, facts, or retrieval records</td>
+</tr>
+<tr>
+<td><strong>Orthogonal retrieval</strong></td>
+<td>✅ Search by <code>user_id</code>, <code>agent_id</code>, <code>app_id</code>, <code>project_id</code>, and <code>session_id</code></td>
+<td>❌ Usually app, namespace, tenant, thread, or graph scoped</td>
+</tr>
+<tr>
+<td><strong>Knowledge Wiki</strong></td>
+<td>✅ Coming next: editable, source-backed Markdown knowledge pages built from memory</td>
+<td>❌ Usually retrieval, graph, dashboards, or generated summaries instead of editable source-backed pages</td>
+</tr>
+<tr>
+<td><strong>Dreaming / Reflection</strong></td>
+<td>✅ Coming next: Reflection that runs when the system is idle or offline to connect signals, compress history, and improve profiles and skills between sessions</td>
+<td>❌ Usually online read/write APIs, retrieval records, or summaries rather than idle-time memory consolidation</td>
+</tr>
+</table>
 
 <br>
 <div align="right">
@@ -665,9 +710,34 @@ Explore stored entities and relationships in a graph interface. Frontend demo; b
 ## Watch EverOS
 
 EverOS 1.0.0 is the first release of a larger memory-system roadmap.
-Watch this repository for upcoming work on Wiki-style memory, Dreaming,
-deeper offline evolution, benchmark releases, and more real-world agent
-integrations.
+Watch this repository for upcoming work on deeper idle-time and offline evolution,
+benchmark releases, and more real-world agent integrations.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+<strong>Knowledge Wiki</strong><br>
+<br>
+Turns scattered episodes, files, facts, and agent traces into source-backed
+Markdown pages for people, projects, topics, decisions, and workflows. Memory
+becomes something users can read, correct, link, version, and open in their
+existing Markdown tools.
+</td>
+<td width="50%" valign="top">
+<strong>Dreaming / Reflection</strong><br>
+<br>
+Runs when the system is idle or offline to revisit stored memory, connect weak
+signals, compress noisy history into durable patterns, and improve profiles and
+skills. The agent gets better between active sessions, not only while you prompt
+it.
+</td>
+</tr>
+</table>
+
+Most memory systems stop at chat history, opaque profiles, or vector recall.
+EverOS keeps memory local, Markdown-native, auditable, and self-evolving: raw
+memory stays readable, derived knowledge becomes a wiki, and Reflection turns
+repeated experience into more useful long-term behavior.
 
 If EverOS is useful to your agent stack, starring the repo helps more
 builders discover it.
