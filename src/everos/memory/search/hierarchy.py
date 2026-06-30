@@ -123,6 +123,32 @@ async def hierarchy_retrieve_episodes(
 # query-vector 与 fact-vector 的 cosine relevance score，二者不是完全同一标尺。
 # 因此这个判断更像“如果存在足够强的 fact 证据，就让 fact 作为该 episode 的
 # 命中证据进入 scored_items”，而不是严格比较 episode 与 fact 的同尺度相关性。
+
+根据代码，Layer 4 比较的是：
+
+best_fact.score     = facts_for_episodes 里根据 query_vector 算出的 cosine similarity score
+episode.score       = Layer 3 RRF score
+
+而 RRF score 通常很小，比如默认 k=60：
+
+rank 1: 1 / 61 ≈ 0.0164
+rank 2: 1 / 62 ≈ 0.0161
+两路都 rank 1: ≈ 0.0328
+
+但 fact cosine score 可能是：
+
+0.4 / 0.6 / 0.8
+
+所以：
+
+best_fact.score > episode.score
+
+在有 query_vector 且 facts 存在时，大概率会成立。
+
+这意味着 Layer 4 的实际行为更像：
+
+只要这个 top_k episode 下存在一个 query-relevant fact，就优先用 fact 作为命中证据。
+
 #
 # 最终 reshape_hybrid_output 仍会返回 SearchEpisodeItem；
 # fact 不会顶层裸露，只会嵌套到 parent episode.atomic_facts 里。
