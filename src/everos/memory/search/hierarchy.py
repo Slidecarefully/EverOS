@@ -116,6 +116,17 @@ async def hierarchy_retrieve_episodes(
         logger.info("hierarchy_retrieve_empty_merge", top_k=top_k)
         return []
 
+# Layer 4 的目的不是扩大 episode 候选集，而是给已经进入 top_k 的 episode
+# 找出最能解释 query 命中的 atomic fact。
+#
+# 注意：merged episode.score 已经是 RRF rank score，而 best_fact.score 是
+# query-vector 与 fact-vector 的 cosine relevance score，二者不是完全同一标尺。
+# 因此这个判断更像“如果存在足够强的 fact 证据，就让 fact 作为该 episode 的
+# 命中证据进入 scored_items”，而不是严格比较 episode 与 fact 的同尺度相关性。
+#
+# 最终 reshape_hybrid_output 仍会返回 SearchEpisodeItem；
+# fact 不会顶层裸露，只会嵌套到 parent episode.atomic_facts 里。
+    
     # Layer 4a — pre-fetch facts for merged episodes
     # 第四层开始进入“episode 与 fact 的替换关系”：
     # 先把 merged 中每个 episode 的 LanceDB id 映射到它所属的 memcell_id，
