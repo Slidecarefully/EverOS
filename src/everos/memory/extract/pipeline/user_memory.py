@@ -124,12 +124,24 @@ class UserMemoryPipeline:
             )
             return PipelineOutcome(track=_TRACK, status="skipped", message_count=0)
 
-        # Emit upfront so OME-async strategies (atomic_fact / foresight /
-        # cluster) start in parallel with the in-pipeline Episode work; they
-        # consume the MemCell directly and do not depend on Episode output.
-        # 先发 UserPipelineStarted，再做 Episode 抽取。
-        # 这一步的顺序很关键：atomic_fact / foresight / cluster 等策略只依赖 MemCell，
-        # 不依赖本 pipeline 后面生成的 Episode，所以提前发事件可以让这些策略并行工作。
+# Emit upfront so OME-async strategies such as atomic_fact and foresight
+# can start in parallel with the in-pipeline Episode extraction work.
+# These strategies consume the MemCell directly and do not depend on
+# Episode output.
+#
+# Profile clustering is different: it is NOT triggered here. It runs only
+# after an Episode has been extracted and written, via the EpisodeExtracted
+# event below, because clustering embeds episode_text while storing
+# memcell_id as the cluster member.
+# 
+# 先发 UserPipelineStarted，再做 Episode 抽取。
+# 这一步的顺序很关键：atomic_fact / foresight 等策略只依赖 MemCell，
+# 不依赖后面生成的 Episode，所以可以提前启动并与 Episode 抽取并行。
+#
+# 但 profile clustering 不属于这里提前启动的策略。
+# profile clustering 需要等待 EpisodeExtracted，因为它要用 ep.episode 做 embedding，
+# 再把对应的 memcell_id 加入 owner 的 cluster。
+        
         for cell, memcell_id in zip(cells, memcell_ids, strict=True):
             # strict=True 保证 cells 与 memcell_ids 数量完全一致。
             # 如果 boundary stage 输出错位，这里会立即失败，避免事件带错 memcell_id。
